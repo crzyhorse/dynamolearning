@@ -24,23 +24,48 @@ var tables = [
                 KeyType: "RANGE"
             }
         ],
-        LocalSecondaryIndexes: [{
-                        IndexName: 'DateKicked-index',
-                        KeySchema: [
-                            {
-                                AttributeName: 'KegName',
-                                KeyType: 'HASH'
-                            },
-                        {
-                                AttributeName: 'DateKicked',
-                                KeyType: 'RANGE'
-                            }
-                        ],
-                        Projection: {
-                            ProjectionType: 'ALL'
-                        }
+        GlobalSecondaryIndexes: [
+            {
+                IndexName: 'DateKicked-index',
+                KeySchema: [
+                    {
+                        AttributeName: 'DateKicked',
+                        KeyType: 'HASH'
+                    },
+                    {
+                        AttributeName: 'KegName',
+                        KeyType: 'RANGE'
                     }
                 ],
+                ProvisionedThroughput: {
+                    ReadCapacityUnits: 1,
+                    WriteCapacityUnits: 1
+                },
+                Projection: {
+                    ProjectionType: 'ALL'
+                }
+            },
+            {
+                IndexName: 'TapNumber-index',
+                KeySchema: [
+                    {
+                        AttributeName: 'TapNumber',
+                        KeyType: 'HASH'
+                    },
+                    {
+                        AttributeName: 'KegName',
+                        KeyType: 'RANGE'
+                    }
+                ],
+                ProvisionedThroughput: {
+                    ReadCapacityUnits: 1,
+                    WriteCapacityUnits: 1
+                },
+                Projection: {
+                    ProjectionType: 'ALL'
+                }
+            }
+        ],
         AttributeDefinitions: [       
         { 
                 AttributeName: "KegName", 
@@ -53,6 +78,10 @@ var tables = [
             {   
                 AttributeName: "DateTapped",
                 AttributeType: "S"
+            },
+            {
+                AttributeName: "TapNumber",
+                AttributeType: "N"
             }
         ],
         ProvisionedThroughput: {       

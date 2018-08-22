@@ -23,8 +23,9 @@ docClient.query(params, function(err, data) {
         console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
     } else {
         console.log("Query succeeded.");
+        console.log(data);
         data.Items.forEach(function(item) {
-            console.log(" -", item.Keg + ": " + item.DateTapped
+            console.log(" -", item.KegName + ": " + item.DateTapped
             + " ... " + item.DateKicked);
         });
     }

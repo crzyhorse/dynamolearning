@@ -13,22 +13,26 @@ var kegs = [
     {
         KegName : "Boddington's",
         DateTapped: "2016-01-01",
-        DateKicked: "2016-12-31"
+        DateKicked: "2016-12-31",
+        TapNumber: 1
     },
     {
         KegName : "Franzizkaner",
         DateTapped: "2017-01-01",
-        DateKicked: "2017-12-31"
+        DateKicked: "2017-12-31",
+        TapNumber: 2
     },
     {
         KegName : "Stella Artois",
         DateTapped: "2018-01-01",
-        DateKicked: "2018-12-13"
+        DateKicked: "2018-12-13",
+        TapNumber: 3
     },
     {
         KegName : "Konig Ludwig",
         DateTapped: "2019-01-01",
-        DateKicked: "unkicked"
+        DateKicked: "unkicked",
+        TapNumber: 4
     },
 ];
 
@@ -38,7 +42,8 @@ kegs.forEach(function(keg) {
         Item: {
             "KegName":  keg.KegName,
             "DateTapped": keg.DateTapped,
-            "DateKicked":  keg.DateKicked
+            "DateKicked":  keg.DateKicked,
+            "TapNumber" : keg.TapNumber
         }
     };
 
