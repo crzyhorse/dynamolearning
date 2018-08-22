@@ -1,0 +1,8 @@
+AKIAJA72N62I3XEVUXNA_us-west-2.db
+DynamoDBLocal.jar
+cUniqueSessionID_us-west-2.db
+myLocalDB_us-west-2.db
+shared-local-instance.db
+DynamoDBLocal_lib/
+node_modules/
+third_party_licenses/
