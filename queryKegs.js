@@ -30,3 +30,25 @@ docClient.query(params, function(err, data) {
         });
     }
 });
+
+params = {
+    TableName : "Kegs",
+    IndexName : "TapNumber-index",
+    KeyConditionExpression: "TapNumber = :num",
+    ExpressionAttributeValues: {
+        ":num": 1,
+    }
+};
+
+docClient.query(params, function(err, data) {
+    if (err) {
+        console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
+    } else {
+        console.log("Query succeeded.");
+        console.log(data);
+        data.Items.forEach(function(item) {
+            console.log(" -", item.KegName + ": " + item.DateTapped
+            + " ... " + item.TapNumber);
+        });
+    }
+});
