@@ -16,17 +16,17 @@ var tables = [
         // This will store information about the currently tapped keg, as well as past kegs.
         TableName : "Kegs",
         KeySchema: [       
-            {   AttributeName: "KegName", // partition key
+            {   AttributeName: "DateKicked", // partition key
                 KeyType: "HASH"
             },   
             {  
-                AttributeName: "DateTapped", // sort key
+                AttributeName: "TapNumber", // sort key
                 KeyType: "RANGE"
             }
         ],
-        GlobalSecondaryIndexes: [
+        LocalSecondaryIndexes: [
             {
-                IndexName: 'DateKicked-index',
+                IndexName: 'KegName-index',
                 KeySchema: [
                     {
                         AttributeName: 'DateKicked',
@@ -37,48 +37,48 @@ var tables = [
                         KeyType: 'RANGE'
                     }
                 ],
-                ProvisionedThroughput: {
-                    ReadCapacityUnits: 1,
-                    WriteCapacityUnits: 1
-                },
-                Projection: {
-                    ProjectionType: 'ALL'
-                }
-            },
-            {
-                IndexName: 'TapNumber-index',
-                KeySchema: [
-                    {
-                        AttributeName: 'TapNumber',
-                        KeyType: 'HASH'
-                    },
-                    {
-                        AttributeName: 'KegName',
-                        KeyType: 'RANGE'
-                    }
-                ],
-                ProvisionedThroughput: {
-                    ReadCapacityUnits: 1,
-                    WriteCapacityUnits: 1
-                },
-                Projection: {
-                    ProjectionType: 'ALL'
-                }
+        //        ProvisionedThroughput: {
+        //            ReadCapacityUnits: 1,
+        //            WriteCapacityUnits: 1
+        //        },
+        //        Projection: {
+        //            ProjectionType: 'ALL'
+        //        }
+        //    },
+        //    {
+        //        IndexName: 'TapNumber-index',
+        //        KeySchema: [
+        //            {
+        //                AttributeName: 'TapNumber',
+        //                KeyType: 'HASH'
+        //            },
+        //            {
+        //                AttributeName: 'KegName',
+        //                KeyType: 'RANGE'
+        //            }
+        //        ],
+        //        ProvisionedThroughput: {
+        //            ReadCapacityUnits: 1,
+        //            WriteCapacityUnits: 1
+        //        },
+        //        Projection: {
+        //            ProjectionType: 'ALL'
+        //        }
             }
         ],
         AttributeDefinitions: [       
-        { 
-                AttributeName: "KegName", 
-                AttributeType: "S" 
-            },
+//        { 
+//                AttributeName: "KegName", 
+//                AttributeType: "S" 
+//            },
             {
                 AttributeName: "DateKicked", 
                 AttributeType: "S"
             },
-            {   
-                AttributeName: "DateTapped",
-                AttributeType: "S"
-            },
+            //{   
+            //    AttributeName: "DateTapped",
+            //    AttributeType: "S"
+            //},
             {
                 AttributeName: "TapNumber",
                 AttributeType: "N"

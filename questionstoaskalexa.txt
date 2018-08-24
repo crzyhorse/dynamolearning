@@ -1,0 +1,15 @@
+** Related to Keg table
+
+What is the current keg
+When did I tap the current keg
+When was the last time I had boddington's.
+What was the previous keg I had?
+when did I tap the boddington's?
+How many times did I have boddington's?
+what is the shortest amount of time it took to finish a keg?
+what is the longest amount of time it took to finish a keg?
+::Multi-tap
+What keg is on tap x?
+When did I tap the keg on tap x?
+
+** Related to pour table

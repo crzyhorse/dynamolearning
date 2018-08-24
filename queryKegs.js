@@ -7,11 +7,10 @@ AWS.config.update({
 
 var docClient = new AWS.DynamoDB.DocumentClient();
 
-console.log("Querying for latest unkicked keg");
+
 
 var params = {
     TableName : "Kegs",
-    IndexName : "DateKicked-index",
     KeyConditionExpression: "DateKicked = :str",
     ExpressionAttributeValues: {
         ":str": "unkicked",
@@ -19,6 +18,8 @@ var params = {
 };
 
 docClient.query(params, function(err, data) {
+    console.log("querying unkicked");
+    console.log(params);
     if (err) {
         console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
     } else {
@@ -33,14 +34,16 @@ docClient.query(params, function(err, data) {
 
 params = {
     TableName : "Kegs",
-    IndexName : "TapNumber-index",
-    KeyConditionExpression: "TapNumber = :num",
+    KeyConditionExpression: "DateKicked = :str and TapNumber = :num",
     ExpressionAttributeValues: {
         ":num": 1,
+        ":str" : "unkicked"
     }
 };
 
 docClient.query(params, function(err, data) {
+    console.log("querying tap number");
+    console.log(params);
     if (err) {
         console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
     } else {
