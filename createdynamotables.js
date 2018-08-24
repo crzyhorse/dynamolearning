@@ -41,9 +41,9 @@ var tables = [
         //            ReadCapacityUnits: 1,
         //            WriteCapacityUnits: 1
         //        },
-        //        Projection: {
-        //            ProjectionType: 'ALL'
-        //        }
+                Projection: {
+                   ProjectionType: 'ALL'
+                }
         //    },
         //    {
         //        IndexName: 'TapNumber-index',
