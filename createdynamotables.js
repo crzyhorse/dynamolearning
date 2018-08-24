@@ -66,19 +66,19 @@ var tables = [
         //        }
             }
         ],
-        AttributeDefinitions: [       
-//        { 
-//                AttributeName: "KegName", 
-//                AttributeType: "S" 
-//            },
+            AttributeDefinitions: [       
+            { 
+                AttributeName: "KegName", 
+                AttributeType: "S" 
+            },
             {
                 AttributeName: "DateKicked", 
                 AttributeType: "S"
             },
-            //{   
-            //    AttributeName: "DateTapped",
-            //    AttributeType: "S"
-            //},
+                //{   
+                //    AttributeName: "DateTapped",
+                //    AttributeType: "S"
+                //},
             {
                 AttributeName: "TapNumber",
                 AttributeType: "N"
