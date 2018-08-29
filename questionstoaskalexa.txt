@@ -1,15 +1,18 @@
 ** Related to Keg table
 
-What is the current keg
-When did I tap the current keg
-When was the last time I had boddington's.
-What was the previous keg I had?
-when did I tap the boddington's?
-How many times did I have boddington's?
-what is the shortest amount of time it took to finish a keg?
-what is the longest amount of time it took to finish a keg?
+What is the current keg (currentKeg)
+When did I tap the current keg (currentKeg)
+When was the last time I had boddington's. (KegName = boddingtons)
+What was the previous keg I had? (TapNumber = x and DateKicked < startdate of current keg)
+when did I tap the boddington's? (KegName = boddingtons)
+when did i kick the boddington's? (KegName = boddingtons) (DateKicked != unkicked)
+How many times did I have boddington's? (KegName = boddingtons)
+what is the shortest amount of time it took to finish a keg? (scan all kegs)
+what is the longest amount of time it took to finish a keg? (scan all kegs)
 ::Multi-tap
-What keg is on tap x?
-When did I tap the keg on tap x?
+What keg is on tap x? (currentKeg(x))
+When did I tap the keg on tap x? (currentKeg(x))
+What was the shortest amount of time on tap x? (scan all kegs filter tapnumber)
+what was the longest amount of time on tapx (scan all kegs fiter tapnumber)
 
 ** Related to pour table

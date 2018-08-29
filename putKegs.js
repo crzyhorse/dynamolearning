@@ -28,6 +28,12 @@ var kegs = [
         DateKicked: "2018-12-13",
         TapNumber: 3
     },
+    {   
+        KegName: "Boddington's",
+        DateTapped: "2017-10-21",
+        DateKicked: "2017-12-31",
+        TapNumber: 1
+    },
     {
         KegName : "Konig Ludwig",
         DateTapped: "2019-01-01",

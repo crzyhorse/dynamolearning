@@ -24,12 +24,32 @@ var tables = [
                 KeyType: "RANGE"
             }
         ],
-        LocalSecondaryIndexes: [
+        GlobalSecondaryIndexes: [
             {
                 IndexName: 'KegName-index',
                 KeySchema: [
                     {
+                        AttributeName: 'KegName',
+                        KeyType: 'HASH'
+                    },
+                    {
                         AttributeName: 'DateKicked',
+                        KeyType: 'RANGE'
+                    }
+                ],
+                ProvisionedThroughput: {
+                    ReadCapacityUnits: 1,
+                    WriteCapacityUnits: 1
+                },
+                Projection: {
+                   ProjectionType: 'ALL'
+                }
+            },
+            {
+                IndexName: 'TapNumber-index',
+                KeySchema: [
+                    {
+                        AttributeName: 'TapNumber',
                         KeyType: 'HASH'
                     },
                     {
@@ -37,33 +57,13 @@ var tables = [
                         KeyType: 'RANGE'
                     }
                 ],
-        //        ProvisionedThroughput: {
-        //            ReadCapacityUnits: 1,
-        //            WriteCapacityUnits: 1
-        //        },
+                ProvisionedThroughput: {
+                    ReadCapacityUnits: 1,
+                    WriteCapacityUnits: 1
+                },
                 Projection: {
-                   ProjectionType: 'ALL'
+                    ProjectionType: 'ALL'
                 }
-        //    },
-        //    {
-        //        IndexName: 'TapNumber-index',
-        //        KeySchema: [
-        //            {
-        //                AttributeName: 'TapNumber',
-        //                KeyType: 'HASH'
-        //            },
-        //            {
-        //                AttributeName: 'KegName',
-        //                KeyType: 'RANGE'
-        //            }
-        //        ],
-        //        ProvisionedThroughput: {
-        //            ReadCapacityUnits: 1,
-        //            WriteCapacityUnits: 1
-        //        },
-        //        Projection: {
-        //            ProjectionType: 'ALL'
-        //        }
             }
         ],
             AttributeDefinitions: [       
@@ -75,10 +75,10 @@ var tables = [
                 AttributeName: "DateKicked", 
                 AttributeType: "S"
             },
-                //{   
-                //    AttributeName: "DateTapped",
-                //    AttributeType: "S"
-                //},
+            {   
+                AttributeName: "DateTapped",
+                AttributeType: "S"
+            },
             {
                 AttributeName: "TapNumber",
                 AttributeType: "N"
