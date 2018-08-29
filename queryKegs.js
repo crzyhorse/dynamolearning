@@ -8,50 +8,84 @@ AWS.config.update({
 var docClient = new AWS.DynamoDB.DocumentClient();
 
 
+//docClient.query(params, function(err, data) {
+//    console.log("querying unkicked");
+//    console.log(params);
+//    if (err) {
+//        console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
+//    } else {
+//        console.log("Query succeeded.");
+//        console.log(data);
+//        data.Items.forEach(function(item) {
+//            console.log(" -", item.KegName + ": " + item.DateTapped
+//            + " ... " + item.DateKicked);
+//        });
+//    }
+//});
 
-var params = {
-    TableName : "Kegs",
-    KeyConditionExpression: "DateKicked = :str",
-    ExpressionAttributeValues: {
-        ":str": "unkicked",
-    }
+//docClient.query(params, function(err, data) {
+//    console.log("querying tap number");
+//    console.log(params);
+//    if (err) {
+//        console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
+//    } else {
+//        console.log("Query succeeded.");
+//        console.log(data);
+//        data.Items.forEach(function(item) {
+//            console.log(" -", item.KegName + ": " + item.DateTapped
+//            + " ... " + item.TapNumber);
+//        });
+//    }
+//});
+
+
+//docClient.query(params, function(err, data) {
+//    console.log("querying tap number");
+//    console.log(params);
+//    if (err) {
+//        console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
+//    } else {
+//        console.log("Query succeeded.");
+//        console.log(data);
+//        data.Items.forEach(function(item) {
+//            console.log(" -", item.KegName + ": " + item.DateTapped
+//            + " ... " + item.TapNumber);
+//        });
+//    }
+//});
+
+var queryTable = function queryTable(queryParams) {
+    return docClient.query(queryParams).promise();
 };
 
-docClient.query(params, function(err, data) {
-    console.log("querying unkicked");
-    console.log(params);
-    if (err) {
-        console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
-    } else {
-        console.log("Query succeeded.");
-        console.log(data);
-        data.Items.forEach(function(item) {
-            console.log(" -", item.KegName + ": " + item.DateTapped
-            + " ... " + item.DateKicked);
-        });
-    }
-});
+//var outputSuccess = function (data) {
+//    console.log("Query succeeded.");
+//    console.log(data);
+//    if (data.Count == 0) {
+//        console.log("No results returned.");
+//    } else {
+//        console.log(data.Items[0].KegName)
+//    }
+//};
 
-params = {
-    TableName : "Kegs",
-    KeyConditionExpression: "DateKicked = :str and TapNumber = :num",
-    ExpressionAttributeValues: {
-        ":num": 1,
-        ":str" : "unkicked"
-    }
-};
+var outputError = function (err) {
+    console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
+}
 
-docClient.query(params, function(err, data) {
-    console.log("querying tap number");
-    console.log(params);
-    if (err) {
-        console.log("Unable to query. Error:", JSON.stringify(err, null, 2));
-    } else {
-        console.log("Query succeeded.");
-        console.log(data);
-        data.Items.forEach(function(item) {
-            console.log(" -", item.KegName + ": " + item.DateTapped
-            + " ... " + item.TapNumber);
-        });
+// query current keg
+var currentKeg = function(TapNumber) {
+    params = {
+        TableName : "Kegs",
+        KeyConditionExpression: "DateKicked = :str and TapNumber = :d",
+        ExpressionAttributeValues: {
+            ":str": 'unkicked',
+            ":d" : TapNumber
+        }
     }
-});
+    queryTable(params).then(data => {
+        console.log('Read table succeeded!', data);
+    }).catch(outputError);
+}
+
+var curkeg = currentKeg(4);
+console.log("curkeg = " + curkeg);
